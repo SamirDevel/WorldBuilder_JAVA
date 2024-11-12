@@ -1,7 +1,6 @@
 package SA.world_builder.Model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +12,16 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Flora extends BaseEntity{
-    @ManyToOne
-    private Biome biome;
+public class Biome extends BaseEntity{
+    @OneToMany(mappedBy = "biome")
+    private List<Species> species;
+
+    @OneToMany(mappedBy = "biome")
+    private List<Flora> floraList;
+
+    @OneToMany(mappedBy = "biome")
+    private List<Fauna> faunaList;
 
     @OneToMany(mappedBy = "origin")
-    private List<FloraDetail> details;
+    private List<BiomeDetail> details;
 }

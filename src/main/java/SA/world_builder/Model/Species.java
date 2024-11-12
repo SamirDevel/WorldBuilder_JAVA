@@ -13,10 +13,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Flora extends BaseEntity{
+public class Species extends BaseEntity{
     @ManyToOne
     private Biome biome;
 
+    @OneToMany(mappedBy = "species")
+    private List<Character> characters;
+
     @OneToMany(mappedBy = "origin")
-    private List<FloraDetail> details;
+    private List<SpeciesDetail> details;
 }
